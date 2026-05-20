@@ -1,0 +1,54 @@
+module Game_Console_Top(
+    input wire CLOCK_50,         // Xung 50MHz gốc từ board DE2
+    
+    // Các chân giao tiếp với cổng VGA trên DE2
+    output wire VGA_HS,          // H-Sync
+    output wire VGA_VS,          // V-Sync
+    output wire [9:0] VGA_R,     // Tín hiệu màu Đỏ
+    output wire [9:0] VGA_G,     // Tín hiệu màu Xanh lá
+    output wire [9:0] VGA_B,     // Tín hiệu màu Xanh dương
+    output wire VGA_CLK,         // Xung nhịp cấp cho chip DAC ADV7123
+    output wire VGA_BLANK,       // Chân Blanking của DAC
+    output wire VGA_SYNC         // Chân Sync của DAC
+);
+
+    wire clk_25MHz;
+    wire video_on;
+    wire [9:0] x_pos;
+    wire [9:0] y_pos;
+
+    // Cấp xung 25MHz trực tiếp cho chip DAC VGA trên board
+    assign VGA_CLK = clk_25MHz; 
+    
+    // Chip DAC yêu cầu chân BLANK hoạt động tích cực mức thấp (Active Low)
+    // Nối nó với cờ video_on (khi video_on = 0 thì DAC tự tắt màu)
+    assign VGA_BLANK = video_on; 
+    assign VGA_SYNC = 1'b0; // Không dùng Sync on Green, nối mass
+
+    // 1. Khởi tạo bộ chia xung (50MHz -> 25MHz)
+    Clock_Divider_25MHz clk_div_inst (
+        .clk_50M(CLOCK_50),
+        .clk_25M(clk_25MHz)
+    );
+
+    // 2. Khởi tạo bộ điều khiển VGA
+    VGA_Controller vga_ctrl_inst (
+        .clk_25M(clk_25MHz),
+        .hsync(VGA_HS),
+        .vsync(VGA_VS),
+        .video_on(video_on),
+        .x_pos(x_pos),
+        .y_pos(y_pos)
+    );
+
+    // 3. Khởi tạo mạch Test xuất màu
+    Test_Pattern test_inst (
+        .x_pos(x_pos),
+        .y_pos(y_pos),
+        .video_on(video_on),
+        .VGA_R(VGA_R),
+        .VGA_G(VGA_G),
+        .VGA_B(VGA_B)
+    );
+
+endmodule

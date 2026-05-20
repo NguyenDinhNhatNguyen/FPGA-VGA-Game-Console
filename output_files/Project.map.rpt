@@ -1,0 +1,1519 @@
+Analysis & Synthesis report for Project
+Wed May 20 15:59:29 2026
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |Game_Console_Top|snake_logic:g1l|next_dir
+  9. State Machine - |Game_Console_Top|snake_logic:g1l|dir
+ 10. Registers Removed During Synthesis
+ 11. Removed Registers Triggering Further Register Optimizations
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for User Entity Instance: VGA_Controller:vga_inst
+ 16. Parameter Settings for User Entity Instance: Button_Debouncer:db3
+ 17. Parameter Settings for User Entity Instance: Button_Debouncer:db2
+ 18. Parameter Settings for User Entity Instance: Button_Debouncer:db1
+ 19. Parameter Settings for User Entity Instance: Button_Debouncer:db0
+ 20. Parameter Settings for User Entity Instance: pong_display:g0d
+ 21. Parameter Settings for Inferred Entity Instance: Bin2BCD:bcd_inst|lpm_divide:Mod0
+ 22. Parameter Settings for Inferred Entity Instance: Bin2BCD:bcd_inst|lpm_divide:Div0
+ 23. Parameter Settings for Inferred Entity Instance: frogger_logic:g6l|lpm_divide:Mod0
+ 24. Parameter Settings for Inferred Entity Instance: snake_logic:g1l|lpm_mult:Mult0
+ 25. Parameter Settings for Inferred Entity Instance: breakout_logic:g3l|lpm_mult:Mult0
+ 26. Parameter Settings for Inferred Entity Instance: pong_logic:g0l|lpm_mult:Mult0
+ 27. Parameter Settings for Inferred Entity Instance: dino_logic:g4l|lpm_mult:Mult0
+ 28. Parameter Settings for Inferred Entity Instance: frogger_logic:g6l|lpm_mult:Mult0
+ 29. lpm_mult Parameter Settings by Entity Instance
+ 30. Port Connectivity Checks: "vga_number:cdown_num"
+ 31. Port Connectivity Checks: "frogger_display:g6d"
+ 32. Port Connectivity Checks: "Game_Logic_Master:master_inst"
+ 33. Port Connectivity Checks: "ps2_keyboard:ps2_inst"
+ 34. Port Connectivity Checks: "Clock_Divider:cd_inst"
+ 35. Elapsed Time Per Partition
+ 36. Analysis & Synthesis Messages
+ 37. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed May 20 15:59:29 2026           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; Project                                         ;
+; Top-level Entity Name              ; Game_Console_Top                                ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; 10,716                                          ;
+;     Total combinational functions  ; 10,670                                          ;
+;     Dedicated logic registers      ; 2,238                                           ;
+; Total registers                    ; 2238                                            ;
+; Total pins                         ; 75                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C35F672C6       ;                    ;
+; Top-level entity name                                                      ; Game_Console_Top   ; Project            ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 8           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-16        ;   0.0%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                         ;
++-----------------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path        ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                              ; Library ;
++-----------------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------+---------+
+; Game_Console_Top.v                      ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game_Console_Top.v                        ;         ;
+; Hardware & Interface/VGA_Controller.v   ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Hardware & Interface/VGA_Controller.v     ;         ;
+; Hardware & Interface/Clock_Divider.v    ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Hardware & Interface/Clock_Divider.v      ;         ;
+; Hardware & Interface/ps2_keyboard.v     ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Hardware & Interface/ps2_keyboard.v       ;         ;
+; Hardware & Interface/Hex_Display.v      ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Hardware & Interface/Hex_Display.v        ;         ;
+; Hardware & Interface/Button_Debouncer.v ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Hardware & Interface/Button_Debouncer.v   ;         ;
+; Core & FSM/Game_Logic_Master.v          ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Core & FSM/Game_Logic_Master.v            ;         ;
+; Core & FSM/menu_display.v               ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Core & FSM/menu_display.v                 ;         ;
+; Core & FSM/UI_Text_Renderer.v           ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Core & FSM/UI_Text_Renderer.v             ;         ;
+; Core & FSM/vga_number.v                 ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Core & FSM/vga_number.v                   ;         ;
+; Core & FSM/Bin2BCD.v                    ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Core & FSM/Bin2BCD.v                      ;         ;
+; Game Engines/pong_logic.v               ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/pong_logic.v                 ;         ;
+; Game Engines/pong_display.v             ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/pong_display.v               ;         ;
+; Game Engines/snake_logic.v              ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/snake_logic.v                ;         ;
+; Game Engines/snake_display.v            ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/snake_display.v              ;         ;
+; Game Engines/flappy_bird_logic.v        ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/flappy_bird_logic.v          ;         ;
+; Game Engines/flappy_bird_display.v      ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/flappy_bird_display.v        ;         ;
+; Game Engines/breakout_logic.v           ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/breakout_logic.v             ;         ;
+; Game Engines/breakout_display.v         ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/breakout_display.v           ;         ;
+; Game Engines/dino_logic.v               ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/dino_logic.v                 ;         ;
+; Game Engines/dino_display.v             ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/dino_display.v               ;         ;
+; Game Engines/invaders_logic.v           ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/invaders_logic.v             ;         ;
+; Game Engines/invaders_display.v         ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/invaders_display.v           ;         ;
+; Game Engines/frogger_logic.v            ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/frogger_logic.v              ;         ;
+; Game Engines/frogger_display.v          ; yes             ; User Verilog HDL File        ; C:/altera/13.0sp1/Project_CE213/Game Engines/frogger_display.v            ;         ;
+; lpm_divide.tdf                          ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_divide.tdf          ;         ;
+; abs_divider.inc                         ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/abs_divider.inc         ;         ;
+; sign_div_unsign.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/sign_div_unsign.inc     ;         ;
+; aglobal130.inc                          ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc          ;         ;
+; db/lpm_divide_45m.tdf                   ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/lpm_divide_45m.tdf                     ;         ;
+; db/sign_div_unsign_bkh.tdf              ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/sign_div_unsign_bkh.tdf                ;         ;
+; db/alt_u_div_ove.tdf                    ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/alt_u_div_ove.tdf                      ;         ;
+; db/add_sub_lkc.tdf                      ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/add_sub_lkc.tdf                        ;         ;
+; db/add_sub_mkc.tdf                      ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/add_sub_mkc.tdf                        ;         ;
+; db/lpm_divide_1dm.tdf                   ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/lpm_divide_1dm.tdf                     ;         ;
+; db/lpm_divide_25m.tdf                   ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/lpm_divide_25m.tdf                     ;         ;
+; db/sign_div_unsign_9kh.tdf              ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/sign_div_unsign_9kh.tdf                ;         ;
+; db/alt_u_div_kve.tdf                    ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/alt_u_div_kve.tdf                      ;         ;
+; lpm_mult.tdf                            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mult.tdf            ;         ;
+; lpm_add_sub.inc                         ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_add_sub.inc         ;         ;
+; multcore.inc                            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/multcore.inc            ;         ;
+; bypassff.inc                            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/bypassff.inc            ;         ;
+; altshift.inc                            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altshift.inc            ;         ;
+; multcore.tdf                            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/multcore.tdf            ;         ;
+; csa_add.inc                             ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/csa_add.inc             ;         ;
+; mpar_add.inc                            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/mpar_add.inc            ;         ;
+; muleabz.inc                             ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/muleabz.inc             ;         ;
+; mul_lfrg.inc                            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/mul_lfrg.inc            ;         ;
+; mul_boothc.inc                          ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/mul_boothc.inc          ;         ;
+; alt_ded_mult.inc                        ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/alt_ded_mult.inc        ;         ;
+; alt_ded_mult_y.inc                      ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/alt_ded_mult_y.inc      ;         ;
+; dffpipe.inc                             ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/dffpipe.inc             ;         ;
+; mpar_add.tdf                            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/mpar_add.tdf            ;         ;
+; lpm_add_sub.tdf                         ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_add_sub.tdf         ;         ;
+; addcore.inc                             ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/addcore.inc             ;         ;
+; look_add.inc                            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/look_add.inc            ;         ;
+; alt_stratix_add_sub.inc                 ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/alt_stratix_add_sub.inc ;         ;
+; db/add_sub_4ch.tdf                      ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/add_sub_4ch.tdf                        ;         ;
+; altshift.tdf                            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altshift.tdf            ;         ;
+; db/add_sub_9ch.tdf                      ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/add_sub_9ch.tdf                        ;         ;
+; db/add_sub_8ch.tdf                      ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/add_sub_8ch.tdf                        ;         ;
+; db/add_sub_7ch.tdf                      ; yes             ; Auto-Generated Megafunction  ; C:/altera/13.0sp1/Project_CE213/db/add_sub_7ch.tdf                        ;         ;
++-----------------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                   ;
++---------------------------------------------+---------------------------------+
+; Resource                                    ; Usage                           ;
++---------------------------------------------+---------------------------------+
+; Estimated Total logic elements              ; 10,716                          ;
+;                                             ;                                 ;
+; Total combinational functions               ; 10670                           ;
+; Logic element usage by number of LUT inputs ;                                 ;
+;     -- 4 input functions                    ; 4563                            ;
+;     -- 3 input functions                    ; 4477                            ;
+;     -- <=2 input functions                  ; 1630                            ;
+;                                             ;                                 ;
+; Logic elements by mode                      ;                                 ;
+;     -- normal mode                          ; 8393                            ;
+;     -- arithmetic mode                      ; 2277                            ;
+;                                             ;                                 ;
+; Total registers                             ; 2238                            ;
+;     -- Dedicated logic registers            ; 2238                            ;
+;     -- I/O registers                        ; 0                               ;
+;                                             ;                                 ;
+; I/O pins                                    ; 75                              ;
+; Embedded Multiplier 9-bit elements          ; 0                               ;
+; Maximum fan-out node                        ; Clock_Divider:cd_inst|clk_25MHz ;
+; Maximum fan-out                             ; 2239                            ;
+; Total fan-out                               ; 41073                           ;
+; Average fan-out                             ; 3.16                            ;
++---------------------------------------------+---------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                ;
++------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                     ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                    ; Library Name ;
++------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |Game_Console_Top                              ; 10670 (181)       ; 2238 (35)    ; 0           ; 0            ; 0       ; 0         ; 75   ; 0            ; |Game_Console_Top                                                                                                                      ; work         ;
+;    |Bin2BCD:bcd_inst|                          ; 115 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Bin2BCD:bcd_inst                                                                                                     ; work         ;
+;       |lpm_divide:Div0|                        ; 56 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Bin2BCD:bcd_inst|lpm_divide:Div0                                                                                     ; work         ;
+;          |lpm_divide_1dm:auto_generated|       ; 56 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Bin2BCD:bcd_inst|lpm_divide:Div0|lpm_divide_1dm:auto_generated                                                       ; work         ;
+;             |sign_div_unsign_bkh:divider|      ; 56 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Bin2BCD:bcd_inst|lpm_divide:Div0|lpm_divide_1dm:auto_generated|sign_div_unsign_bkh:divider                           ; work         ;
+;                |alt_u_div_ove:divider|         ; 56 (56)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Bin2BCD:bcd_inst|lpm_divide:Div0|lpm_divide_1dm:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_ove:divider     ; work         ;
+;       |lpm_divide:Mod0|                        ; 59 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Bin2BCD:bcd_inst|lpm_divide:Mod0                                                                                     ; work         ;
+;          |lpm_divide_45m:auto_generated|       ; 59 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Bin2BCD:bcd_inst|lpm_divide:Mod0|lpm_divide_45m:auto_generated                                                       ; work         ;
+;             |sign_div_unsign_bkh:divider|      ; 59 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Bin2BCD:bcd_inst|lpm_divide:Mod0|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider                           ; work         ;
+;                |alt_u_div_ove:divider|         ; 59 (59)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Bin2BCD:bcd_inst|lpm_divide:Mod0|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_ove:divider     ; work         ;
+;    |Button_Debouncer:db0|                      ; 26 (26)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Button_Debouncer:db0                                                                                                 ; work         ;
+;    |Button_Debouncer:db1|                      ; 26 (26)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Button_Debouncer:db1                                                                                                 ; work         ;
+;    |Button_Debouncer:db2|                      ; 26 (26)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Button_Debouncer:db2                                                                                                 ; work         ;
+;    |Button_Debouncer:db3|                      ; 26 (26)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Button_Debouncer:db3                                                                                                 ; work         ;
+;    |Clock_Divider:cd_inst|                     ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Clock_Divider:cd_inst                                                                                                ; work         ;
+;    |Game_Logic_Master:master_inst|             ; 61 (61)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Game_Logic_Master:master_inst                                                                                        ; work         ;
+;    |Hex_Display:hex_ones|                      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Hex_Display:hex_ones                                                                                                 ; work         ;
+;    |Hex_Display:hex_tens|                      ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|Hex_Display:hex_tens                                                                                                 ; work         ;
+;    |UI_Text_Renderer:ui_inst|                  ; 138 (138)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|UI_Text_Renderer:ui_inst                                                                                             ; work         ;
+;    |VGA_Controller:vga_inst|                   ; 45 (45)           ; 20 (20)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|VGA_Controller:vga_inst                                                                                              ; work         ;
+;    |breakout_display:g3d|                      ; 126 (126)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|breakout_display:g3d                                                                                                 ; work         ;
+;    |breakout_logic:g3l|                        ; 378 (339)         ; 78 (78)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|breakout_logic:g3l                                                                                                   ; work         ;
+;       |lpm_mult:Mult0|                         ; 39 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|breakout_logic:g3l|lpm_mult:Mult0                                                                                    ; work         ;
+;          |multcore:mult_core|                  ; 39 (26)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|breakout_logic:g3l|lpm_mult:Mult0|multcore:mult_core                                                                 ; work         ;
+;             |mpar_add:padder|                  ; 13 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|breakout_logic:g3l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder                                                 ; work         ;
+;                |lpm_add_sub:adder[0]|          ; 13 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|breakout_logic:g3l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]                            ; work         ;
+;                   |add_sub_9ch:auto_generated| ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|breakout_logic:g3l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_9ch:auto_generated ; work         ;
+;    |dino_display:g4d|                          ; 67 (67)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|dino_display:g4d                                                                                                     ; work         ;
+;    |dino_logic:g4l|                            ; 195 (165)         ; 63 (63)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|dino_logic:g4l                                                                                                       ; work         ;
+;       |lpm_mult:Mult0|                         ; 30 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|dino_logic:g4l|lpm_mult:Mult0                                                                                        ; work         ;
+;          |multcore:mult_core|                  ; 30 (17)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|dino_logic:g4l|lpm_mult:Mult0|multcore:mult_core                                                                     ; work         ;
+;             |mpar_add:padder|                  ; 13 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|dino_logic:g4l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder                                                     ; work         ;
+;                |lpm_add_sub:adder[0]|          ; 13 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|dino_logic:g4l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]                                ; work         ;
+;                   |add_sub_8ch:auto_generated| ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|dino_logic:g4l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_8ch:auto_generated     ; work         ;
+;    |flappy_bird_display:g2d|                   ; 87 (87)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|flappy_bird_display:g2d                                                                                              ; work         ;
+;    |flappy_bird_logic:g2l|                     ; 175 (175)         ; 87 (87)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|flappy_bird_logic:g2l                                                                                                ; work         ;
+;    |frogger_logic:g6l|                         ; 1043 (960)        ; 113 (113)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|frogger_logic:g6l                                                                                                    ; work         ;
+;       |lpm_divide:Mod0|                        ; 46 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|frogger_logic:g6l|lpm_divide:Mod0                                                                                    ; work         ;
+;          |lpm_divide_25m:auto_generated|       ; 46 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|frogger_logic:g6l|lpm_divide:Mod0|lpm_divide_25m:auto_generated                                                      ; work         ;
+;             |sign_div_unsign_9kh:divider|      ; 46 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|frogger_logic:g6l|lpm_divide:Mod0|lpm_divide_25m:auto_generated|sign_div_unsign_9kh:divider                          ; work         ;
+;                |alt_u_div_kve:divider|         ; 46 (46)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|frogger_logic:g6l|lpm_divide:Mod0|lpm_divide_25m:auto_generated|sign_div_unsign_9kh:divider|alt_u_div_kve:divider    ; work         ;
+;       |lpm_mult:Mult0|                         ; 37 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|frogger_logic:g6l|lpm_mult:Mult0                                                                                     ; work         ;
+;          |multcore:mult_core|                  ; 37 (24)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|frogger_logic:g6l|lpm_mult:Mult0|multcore:mult_core                                                                  ; work         ;
+;             |mpar_add:padder|                  ; 13 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|frogger_logic:g6l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder                                                  ; work         ;
+;                |lpm_add_sub:adder[0]|          ; 13 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|frogger_logic:g6l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]                             ; work         ;
+;                   |add_sub_7ch:auto_generated| ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|frogger_logic:g6l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_7ch:auto_generated  ; work         ;
+;    |invaders_display:g5d|                      ; 249 (249)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|invaders_display:g5d                                                                                                 ; work         ;
+;    |invaders_logic:g5l|                        ; 383 (383)         ; 114 (114)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|invaders_logic:g5l                                                                                                   ; work         ;
+;    |menu_display:m_ui|                         ; 84 (84)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|menu_display:m_ui                                                                                                    ; work         ;
+;    |pong_display:g0d|                          ; 130 (130)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|pong_display:g0d                                                                                                     ; work         ;
+;    |pong_logic:g0l|                            ; 510 (469)         ; 99 (99)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|pong_logic:g0l                                                                                                       ; work         ;
+;       |lpm_mult:Mult0|                         ; 41 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|pong_logic:g0l|lpm_mult:Mult0                                                                                        ; work         ;
+;          |multcore:mult_core|                  ; 41 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|pong_logic:g0l|lpm_mult:Mult0|multcore:mult_core                                                                     ; work         ;
+;             |mpar_add:padder|                  ; 13 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|pong_logic:g0l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder                                                     ; work         ;
+;                |lpm_add_sub:adder[0]|          ; 13 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|pong_logic:g0l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]                                ; work         ;
+;                   |add_sub_9ch:auto_generated| ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|pong_logic:g0l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_9ch:auto_generated     ; work         ;
+;    |ps2_keyboard:ps2_inst|                     ; 29 (29)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|ps2_keyboard:ps2_inst                                                                                                ; work         ;
+;    |snake_display:g1d|                         ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|snake_display:g1d                                                                                                    ; work         ;
+;    |snake_logic:g1l|                           ; 6513 (6479)       ; 1476 (1476)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|snake_logic:g1l                                                                                                      ; work         ;
+;       |lpm_mult:Mult0|                         ; 34 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|snake_logic:g1l|lpm_mult:Mult0                                                                                       ; work         ;
+;          |multcore:mult_core|                  ; 34 (22)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|snake_logic:g1l|lpm_mult:Mult0|multcore:mult_core                                                                    ; work         ;
+;             |mpar_add:padder|                  ; 12 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|snake_logic:g1l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder                                                    ; work         ;
+;                |lpm_add_sub:adder[0]|          ; 12 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|snake_logic:g1l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]                               ; work         ;
+;                   |add_sub_4ch:auto_generated| ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|snake_logic:g1l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_4ch:auto_generated    ; work         ;
+;    |vga_number:cdown_num|                      ; 41 (41)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Game_Console_Top|vga_number:cdown_num                                                                                                 ; work         ;
++------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------+
+; State Machine - |Game_Console_Top|snake_logic:g1l|next_dir          ;
++-------------+-------------+-------------+-------------+-------------+
+; Name        ; next_dir.11 ; next_dir.10 ; next_dir.01 ; next_dir.00 ;
++-------------+-------------+-------------+-------------+-------------+
+; next_dir.00 ; 0           ; 0           ; 0           ; 0           ;
+; next_dir.01 ; 0           ; 0           ; 1           ; 1           ;
+; next_dir.10 ; 0           ; 1           ; 0           ; 1           ;
+; next_dir.11 ; 1           ; 0           ; 0           ; 1           ;
++-------------+-------------+-------------+-------------+-------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------+
+; State Machine - |Game_Console_Top|snake_logic:g1l|dir ;
++--------+--------+--------+--------+-------------------+
+; Name   ; dir.11 ; dir.10 ; dir.01 ; dir.00            ;
++--------+--------+--------+--------+-------------------+
+; dir.00 ; 0      ; 0      ; 0      ; 0                 ;
+; dir.01 ; 0      ; 0      ; 1      ; 1                 ;
+; dir.10 ; 0      ; 1      ; 0      ; 1                 ;
+; dir.11 ; 1      ; 0      ; 0      ; 1                 ;
++--------+--------+--------+--------+-------------------+
+
+
++--------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                               ;
++------------------------------------------------+-------------------------------------------------+
+; Register name                                  ; Reason for Removal                              ;
++------------------------------------------------+-------------------------------------------------+
+; frogger_logic:g6l|frog_y[0,1]                  ; Stuck at GND due to stuck port data_in          ;
+; invaders_logic:g5l|ship_x[0]                   ; Stuck at GND due to stuck port data_in          ;
+; Game_Logic_Master:master_inst|current_state[3] ; Stuck at GND due to stuck port data_in          ;
+; breakout_logic:g3l|px[0..2]                    ; Stuck at GND due to stuck port data_in          ;
+; invaders_logic:g5l|m2_a                        ; Merged with invaders_logic:g5l|m1_a             ;
+; invaders_logic:g5l|m1_a                        ; Merged with invaders_logic:g5l|m3_a             ;
+; frogger_logic:g6l|spd4[2]                      ; Merged with frogger_logic:g6l|spd5[0]           ;
+; frogger_logic:g6l|spd1[0]                      ; Merged with frogger_logic:g6l|dir2              ;
+; frogger_logic:g6l|spd2[0]                      ; Merged with frogger_logic:g6l|dir3              ;
+; frogger_logic:g6l|spd1[2]                      ; Merged with frogger_logic:g6l|dir3              ;
+; frogger_logic:g6l|spd3[0]                      ; Merged with frogger_logic:g6l|dir4              ;
+; frogger_logic:g6l|spd2[2]                      ; Merged with frogger_logic:g6l|dir4              ;
+; frogger_logic:g6l|spd4[0]                      ; Merged with frogger_logic:g6l|dir5              ;
+; frogger_logic:g6l|spd3[2]                      ; Merged with frogger_logic:g6l|dir5              ;
+; invaders_logic:g5l|up_prev                     ; Merged with frogger_logic:g6l|u_d               ;
+; invaders_logic:g5l|laser_y[0]                  ; Merged with invaders_logic:g5l|laser_y[1]       ;
+; invaders_logic:g5l|m2_y[0]                     ; Merged with invaders_logic:g5l|m2_y[1]          ;
+; flappy_bird_logic:g2l|pipe_x[0]                ; Merged with flappy_bird_logic:g2l|pipe_x[1]     ;
+; flappy_bird_logic:g2l|pipe_y[9]                ; Merged with flappy_bird_logic:g2l|pipe_x[1]     ;
+; frogger_logic:g6l|lfsr[0]                      ; Merged with flappy_bird_logic:g2l|lfsr[0]       ;
+; invaders_logic:g5l|lfsr[0]                     ; Merged with flappy_bird_logic:g2l|lfsr[0]       ;
+; pong_logic:g0l|lfsr[0]                         ; Merged with flappy_bird_logic:g2l|lfsr[0]       ;
+; frogger_logic:g6l|lfsr[1]                      ; Merged with flappy_bird_logic:g2l|lfsr[1]       ;
+; invaders_logic:g5l|lfsr[1]                     ; Merged with flappy_bird_logic:g2l|lfsr[1]       ;
+; pong_logic:g0l|lfsr[1]                         ; Merged with flappy_bird_logic:g2l|lfsr[1]       ;
+; frogger_logic:g6l|lfsr[2]                      ; Merged with flappy_bird_logic:g2l|lfsr[2]       ;
+; invaders_logic:g5l|lfsr[2]                     ; Merged with flappy_bird_logic:g2l|lfsr[2]       ;
+; pong_logic:g0l|lfsr[2]                         ; Merged with flappy_bird_logic:g2l|lfsr[2]       ;
+; frogger_logic:g6l|lfsr[3]                      ; Merged with flappy_bird_logic:g2l|lfsr[3]       ;
+; invaders_logic:g5l|lfsr[3]                     ; Merged with flappy_bird_logic:g2l|lfsr[3]       ;
+; pong_logic:g0l|lfsr[3]                         ; Merged with flappy_bird_logic:g2l|lfsr[3]       ;
+; frogger_logic:g6l|lfsr[4]                      ; Merged with flappy_bird_logic:g2l|lfsr[4]       ;
+; invaders_logic:g5l|lfsr[4]                     ; Merged with flappy_bird_logic:g2l|lfsr[4]       ;
+; pong_logic:g0l|lfsr[4]                         ; Merged with flappy_bird_logic:g2l|lfsr[4]       ;
+; frogger_logic:g6l|lfsr[5]                      ; Merged with flappy_bird_logic:g2l|lfsr[5]       ;
+; invaders_logic:g5l|lfsr[5]                     ; Merged with flappy_bird_logic:g2l|lfsr[5]       ;
+; pong_logic:g0l|lfsr[5]                         ; Merged with flappy_bird_logic:g2l|lfsr[5]       ;
+; frogger_logic:g6l|lfsr[6]                      ; Merged with flappy_bird_logic:g2l|lfsr[6]       ;
+; invaders_logic:g5l|lfsr[6]                     ; Merged with flappy_bird_logic:g2l|lfsr[6]       ;
+; pong_logic:g0l|lfsr[6]                         ; Merged with flappy_bird_logic:g2l|lfsr[6]       ;
+; frogger_logic:g6l|lfsr[7]                      ; Merged with flappy_bird_logic:g2l|lfsr[7]       ;
+; invaders_logic:g5l|lfsr[7]                     ; Merged with flappy_bird_logic:g2l|lfsr[7]       ;
+; pong_logic:g0l|lfsr[7]                         ; Merged with flappy_bird_logic:g2l|lfsr[7]       ;
+; frogger_logic:g6l|lfsr[8]                      ; Merged with flappy_bird_logic:g2l|lfsr[8]       ;
+; invaders_logic:g5l|lfsr[8]                     ; Merged with flappy_bird_logic:g2l|lfsr[8]       ;
+; pong_logic:g0l|lfsr[8]                         ; Merged with flappy_bird_logic:g2l|lfsr[8]       ;
+; frogger_logic:g6l|lfsr[9]                      ; Merged with flappy_bird_logic:g2l|lfsr[9]       ;
+; invaders_logic:g5l|lfsr[9]                     ; Merged with flappy_bird_logic:g2l|lfsr[9]       ;
+; pong_logic:g0l|lfsr[9]                         ; Merged with flappy_bird_logic:g2l|lfsr[9]       ;
+; flappy_bird_logic:g2l|btn_prev                 ; Merged with dino_logic:g4l|up_d                 ;
+; dino_logic:g4l|cactus_x[0]                     ; Stuck at GND due to stuck port data_in          ;
+; flappy_bird_logic:g2l|pipe_x[1]                ; Stuck at GND due to stuck port data_in          ;
+; breakout_logic:g3l|vy[0]                       ; Stuck at GND due to stuck port data_in          ;
+; flappy_bird_logic:g2l|true_y[12]               ; Stuck at GND due to stuck port data_in          ;
+; breakout_logic:g3l|vy[1]                       ; Stuck at GND due to stuck port data_in          ;
+; Button_Debouncer:db0|btn_out_high              ; Merged with Button_Debouncer:db0|state_internal ;
+; Button_Debouncer:db1|btn_out_high              ; Merged with Button_Debouncer:db1|state_internal ;
+; Button_Debouncer:db2|btn_out_high              ; Merged with Button_Debouncer:db2|state_internal ;
+; Button_Debouncer:db3|btn_out_high              ; Merged with Button_Debouncer:db3|state_internal ;
+; invaders_logic:g5l|laser_y[1]                  ; Stuck at GND due to stuck port data_in          ;
+; invaders_logic:g5l|m2_y[1]                     ; Stuck at GND due to stuck port data_in          ;
+; flappy_bird_logic:g2l|true_y[10,11]            ; Stuck at GND due to stuck port data_in          ;
+; invaders_logic:g5l|m1_x[9]                     ; Stuck at GND due to stuck port data_in          ;
+; invaders_logic:g5l|m3_x[9]                     ; Stuck at GND due to stuck port data_in          ;
+; snake_logic:g1l|next_dir~6                     ; Lost fanout                                     ;
+; snake_logic:g1l|next_dir~7                     ; Lost fanout                                     ;
+; snake_logic:g1l|dir~6                          ; Lost fanout                                     ;
+; snake_logic:g1l|dir~7                          ; Lost fanout                                     ;
+; breakout_logic:g3l|vy[2]                       ; Stuck at VCC due to stuck port data_in          ;
+; breakout_logic:g3l|vy[3..9]                    ; Merged with breakout_logic:g3l|vy[10]           ;
+; snake_logic:g1l|rand_y[0]                      ; Merged with snake_logic:g1l|rand_x[0]           ;
+; blink_cnt[0]                                   ; Merged with snake_logic:g1l|rand_x[0]           ;
+; flappy_bird_logic:g2l|true_y[9]                ; Stuck at GND due to stuck port data_in          ;
+; flappy_bird_logic:g2l|bird_y[9]                ; Stuck at GND due to stuck port data_in          ;
+; Total Number of Removed Registers = 84         ;                                                 ;
++------------------------------------------------+-------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                     ;
++----------------------------------+---------------------------+------------------------------------------------------------------+
+; Register name                    ; Reason for Removal        ; Registers Removed due to This Register                           ;
++----------------------------------+---------------------------+------------------------------------------------------------------+
+; flappy_bird_logic:g2l|true_y[12] ; Stuck at GND              ; flappy_bird_logic:g2l|true_y[9], flappy_bird_logic:g2l|bird_y[9] ;
+;                                  ; due to stuck port data_in ;                                                                  ;
+; flappy_bird_logic:g2l|true_y[11] ; Stuck at GND              ; flappy_bird_logic:g2l|true_y[10]                                 ;
+;                                  ; due to stuck port data_in ;                                                                  ;
++----------------------------------+---------------------------+------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 2238  ;
+; Number of registers using Synchronous Clear  ; 417   ;
+; Number of registers using Synchronous Load   ; 109   ;
+; Number of registers using Asynchronous Clear ; 564   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 648   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; dino_logic:g4l|y[8]                     ; 6       ;
+; dino_logic:g4l|y[6]                     ; 6       ;
+; dino_logic:g4l|y[3]                     ; 6       ;
+; dino_logic:g4l|y[4]                     ; 5       ;
+; dino_logic:g4l|y[2]                     ; 5       ;
+; dino_logic:g4l|y[1]                     ; 5       ;
+; dino_logic:g4l|cactus_x[9]              ; 5       ;
+; dino_logic:g4l|cactus_x[7]              ; 9       ;
+; flappy_bird_logic:g2l|pipe_x[9]         ; 6       ;
+; flappy_bird_logic:g2l|pipe_x[7]         ; 6       ;
+; flappy_bird_logic:g2l|pipe_y[7]         ; 4       ;
+; flappy_bird_logic:g2l|pipe_y[6]         ; 4       ;
+; flappy_bird_logic:g2l|pipe_y[3]         ; 5       ;
+; pong_logic:g0l|vx[1]                    ; 3       ;
+; pong_logic:g0l|vx[0]                    ; 3       ;
+; pong_logic:g0l|paddle_L_y[7]            ; 7       ;
+; pong_logic:g0l|paddle_L_y[6]            ; 7       ;
+; pong_logic:g0l|paddle_L_y[4]            ; 6       ;
+; pong_logic:g0l|paddle_L_y[1]            ; 8       ;
+; pong_logic:g0l|paddle_R_y[7]            ; 12      ;
+; pong_logic:g0l|paddle_R_y[6]            ; 12      ;
+; pong_logic:g0l|paddle_R_y[4]            ; 11      ;
+; pong_logic:g0l|paddle_R_y[1]            ; 12      ;
+; pong_logic:g0l|x[8]                     ; 6       ;
+; pong_logic:g0l|x[5]                     ; 7       ;
+; pong_logic:g0l|x[4]                     ; 7       ;
+; pong_logic:g0l|x[3]                     ; 7       ;
+; pong_logic:g0l|x[1]                     ; 7       ;
+; pong_logic:g0l|x[0]                     ; 5       ;
+; pong_logic:g0l|y[7]                     ; 11      ;
+; pong_logic:g0l|y[6]                     ; 11      ;
+; pong_logic:g0l|y[5]                     ; 11      ;
+; pong_logic:g0l|y[3]                     ; 11      ;
+; pong_logic:g0l|y[1]                     ; 12      ;
+; pong_logic:g0l|y[0]                     ; 13      ;
+; flappy_bird_logic:g2l|bird_y[7]         ; 2       ;
+; flappy_bird_logic:g2l|bird_y[6]         ; 2       ;
+; flappy_bird_logic:g2l|bird_y[5]         ; 2       ;
+; flappy_bird_logic:g2l|bird_y[4]         ; 2       ;
+; invaders_logic:g5l|ship_x[8]            ; 10      ;
+; invaders_logic:g5l|ship_x[5]            ; 10      ;
+; invaders_logic:g5l|ship_x[3]            ; 11      ;
+; invaders_logic:g5l|ship_x[2]            ; 12      ;
+; Button_Debouncer:db1|state_internal     ; 6       ;
+; Button_Debouncer:db0|state_internal     ; 5       ;
+; pong_logic:g0l|vy[1]                    ; 4       ;
+; pong_logic:g0l|vy[0]                    ; 4       ;
+; flappy_bird_logic:g2l|true_y[7]         ; 5       ;
+; flappy_bird_logic:g2l|true_y[6]         ; 5       ;
+; flappy_bird_logic:g2l|true_y[5]         ; 5       ;
+; flappy_bird_logic:g2l|true_y[4]         ; 5       ;
+; Button_Debouncer:db2|state_internal     ; 3       ;
+; Button_Debouncer:db3|state_internal     ; 3       ;
+; frogger_logic:g6l|frog_y[7]             ; 10      ;
+; frogger_logic:g6l|frog_y[8]             ; 9       ;
+; Button_Debouncer:db1|sync_1             ; 2       ;
+; Button_Debouncer:db0|sync_1             ; 2       ;
+; Button_Debouncer:db2|sync_1             ; 2       ;
+; Button_Debouncer:db3|sync_1             ; 2       ;
+; frogger_logic:g6l|frog_y[4]             ; 8       ;
+; frogger_logic:g6l|frog_y[3]             ; 8       ;
+; frogger_logic:g6l|frog_y[5]             ; 9       ;
+; frogger_logic:g6l|frog_x[8]             ; 23      ;
+; frogger_logic:g6l|frog_x[5]             ; 23      ;
+; frogger_logic:g6l|frog_x[4]             ; 24      ;
+; frogger_logic:g6l|frog_x[2]             ; 24      ;
+; frogger_logic:g6l|frog_x[1]             ; 37      ;
+; Button_Debouncer:db1|sync_0             ; 1       ;
+; Button_Debouncer:db0|sync_0             ; 1       ;
+; Button_Debouncer:db2|sync_0             ; 1       ;
+; Button_Debouncer:db3|sync_0             ; 1       ;
+; Total number of inverted registers = 71 ;         ;
++-----------------------------------------+---------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |Game_Console_Top|Game_Logic_Master:master_inst|count_val[1] ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |Game_Console_Top|por_cnt[0]                                 ;
+; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |Game_Console_Top|Button_Debouncer:db2|count[10]             ;
+; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |Game_Console_Top|Button_Debouncer:db3|count[8]              ;
+; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |Game_Console_Top|Button_Debouncer:db0|count[7]              ;
+; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |Game_Console_Top|Button_Debouncer:db1|count[8]              ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |Game_Console_Top|invaders_logic:g5l|laser_x[4]              ;
+; 3:1                ; 25 bits   ; 50 LEs        ; 25 LEs               ; 25 LEs                 ; Yes        ; |Game_Console_Top|Game_Logic_Master:master_inst|timer[9]     ;
+; 4:1                ; 22 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|timer_cnt[9]               ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |Game_Console_Top|flappy_bird_logic:g2l|bird_y[1]            ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |Game_Console_Top|flappy_bird_logic:g2l|f_cnt[8]             ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |Game_Console_Top|invaders_logic:g5l|tick_cnt[5]             ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |Game_Console_Top|frogger_logic:g6l|f_cnt[5]                 ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |Game_Console_Top|pong_logic:g0l|f_cnt[2]                    ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[127][5]             ;
+; 5:1                ; 11 bits   ; 33 LEs        ; 11 LEs               ; 22 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|apple_y[1]                 ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |Game_Console_Top|frogger_logic:g6l|frog_y[2]                ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[3][0]               ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[4][0]               ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[5][1]               ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[6][0]               ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[7][0]               ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[8][2]               ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[9][0]               ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[10][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[11][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[12][2]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[13][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[14][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[15][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[16][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[17][2]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[18][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[19][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[20][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[21][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[22][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[23][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[24][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[25][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[26][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[27][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[28][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[29][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[30][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[31][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[32][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[33][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[34][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[35][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[36][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[37][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[38][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[39][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[40][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[41][2]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[42][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[43][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[44][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[45][2]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[46][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[47][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[48][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[49][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[50][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[51][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[52][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[53][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[54][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[55][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[56][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[57][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[58][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[59][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[60][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[61][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[62][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[63][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[64][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[65][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[66][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[67][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[68][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[69][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[70][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[71][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[72][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[73][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[74][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[75][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[76][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[77][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[78][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[79][2]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[80][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[81][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[82][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[83][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[84][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[85][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[86][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[87][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[88][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[89][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[90][2]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[91][2]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[92][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[93][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[94][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[95][5]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[96][4]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[97][1]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[98][3]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[99][0]              ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[100][5]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[101][0]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[102][0]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[103][0]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[104][0]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[105][0]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[106][0]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[107][5]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[108][0]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[109][3]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[110][5]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[111][5]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[112][5]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[113][5]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[114][5]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[115][5]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[116][4]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[117][5]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[118][5]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[119][4]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[120][5]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[121][4]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[122][1]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[123][3]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[124][1]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[125][4]             ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[126][2]             ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |Game_Console_Top|dino_logic:g4l|y[9]                        ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 7 LEs                ; 14 LEs                 ; Yes        ; |Game_Console_Top|dino_logic:g4l|cactus_x[1]                 ;
+; 5:1                ; 14 bits   ; 42 LEs        ; 14 LEs               ; 28 LEs                 ; Yes        ; |Game_Console_Top|flappy_bird_logic:g2l|score[4]             ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Game_Console_Top|flappy_bird_logic:g2l|pipe_x[4]            ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |Game_Console_Top|pong_logic:g0l|paddle_L_y[3]               ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |Game_Console_Top|pong_logic:g0l|x[6]                        ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |Game_Console_Top|invaders_logic:g5l|ship_x[9]               ;
+; 6:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |Game_Console_Top|breakout_logic:g3l|px[7]                   ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Game_Console_Top|flappy_bird_logic:g2l|true_y[9]            ;
+; 5:1                ; 13 bits   ; 39 LEs        ; 26 LEs               ; 13 LEs                 ; Yes        ; |Game_Console_Top|flappy_bird_logic:g2l|velocity[6]          ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 8 LEs                ; 24 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|len[1]                     ;
+; 6:1                ; 11 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; Yes        ; |Game_Console_Top|dino_logic:g4l|vy[0]                       ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |Game_Console_Top|pong_logic:g0l|y[9]                        ;
+; 6:1                ; 11 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; Yes        ; |Game_Console_Top|breakout_logic:g3l|x[5]                    ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |Game_Console_Top|breakout_logic:g3l|y[0]                    ;
+; 6:1                ; 9 bits    ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |Game_Console_Top|breakout_logic:g3l|y[10]                   ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |Game_Console_Top|pong_logic:g0l|p2_rounds[1]                ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 8 LEs                ; 24 LEs                 ; Yes        ; |Game_Console_Top|invaders_logic:g5l|score[6]                ;
+; 6:1                ; 9 bits    ; 36 LEs        ; 0 LEs                ; 36 LEs                 ; Yes        ; |Game_Console_Top|invaders_logic:g5l|m1_x[4]                 ;
+; 7:1                ; 10 bits   ; 40 LEs        ; 10 LEs               ; 30 LEs                 ; Yes        ; |Game_Console_Top|invaders_logic:g5l|m1_y[8]                 ;
+; 6:1                ; 10 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |Game_Console_Top|invaders_logic:g5l|m2_x[6]                 ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 8 LEs                ; 24 LEs                 ; Yes        ; |Game_Console_Top|invaders_logic:g5l|m2_y[3]                 ;
+; 6:1                ; 9 bits    ; 36 LEs        ; 0 LEs                ; 36 LEs                 ; Yes        ; |Game_Console_Top|invaders_logic:g5l|m3_x[8]                 ;
+; 7:1                ; 10 bits   ; 40 LEs        ; 10 LEs               ; 30 LEs                 ; Yes        ; |Game_Console_Top|invaders_logic:g5l|m3_y[9]                 ;
+; 7:1                ; 9 bits    ; 36 LEs        ; 9 LEs                ; 27 LEs                 ; Yes        ; |Game_Console_Top|pong_logic:g0l|vx[9]                       ;
+; 7:1                ; 9 bits    ; 36 LEs        ; 27 LEs               ; 9 LEs                  ; Yes        ; |Game_Console_Top|frogger_logic:g6l|lane1_x[3]               ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |Game_Console_Top|frogger_logic:g6l|lane5_x[8]               ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |Game_Console_Top|frogger_logic:g6l|lane5_x[4]               ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |Game_Console_Top|frogger_logic:g6l|lane2_x[9]               ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |Game_Console_Top|frogger_logic:g6l|lane2_x[7]               ;
+; 7:1                ; 9 bits    ; 36 LEs        ; 27 LEs               ; 9 LEs                  ; Yes        ; |Game_Console_Top|frogger_logic:g6l|lane3_x[4]               ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |Game_Console_Top|frogger_logic:g6l|lane4_x[7]               ;
+; 7:1                ; 7 bits    ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |Game_Console_Top|frogger_logic:g6l|lane4_x[5]               ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Game_Console_Top|breakout_logic:g3l|vx[5]                   ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |Game_Console_Top|pong_logic:g0l|p1_rounds[0]                ;
+; 6:1                ; 11 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[1][1]               ;
+; 6:1                ; 11 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[2][0]               ;
+; 9:1                ; 5 bits    ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |Game_Console_Top|pong_logic:g0l|paddle_R_y[8]               ;
+; 9:1                ; 8 bits    ; 48 LEs        ; 16 LEs               ; 32 LEs                 ; Yes        ; |Game_Console_Top|pong_logic:g0l|vy[3]                       ;
+; 9:1                ; 3 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |Game_Console_Top|breakout_logic:g3l|vx[2]                   ;
+; 7:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_x[0][1]               ;
+; 7:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|body_y[0][4]               ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |Game_Console_Top|invaders_logic:g5l|laser_y[2]              ;
+; 9:1                ; 7 bits    ; 42 LEs        ; 14 LEs               ; 28 LEs                 ; Yes        ; |Game_Console_Top|invaders_logic:g5l|laser_y[5]              ;
+; 14:1               ; 9 bits    ; 81 LEs        ; 9 LEs                ; 72 LEs                 ; Yes        ; |Game_Console_Top|breakout_logic:g3l|vy[8]                   ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; Yes        ; |Game_Console_Top|frogger_logic:g6l|frog_x[3]                ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |Game_Console_Top|flappy_bird_logic:g2l|bird_y[7]            ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |Game_Console_Top|snake_logic:g1l|score[1]                   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |Game_Console_Top|dino_logic:g4l|score[5]                    ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |Game_Console_Top|frogger_logic:g6l|frog_y[4]                ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 6 LEs                ; 12 LEs                 ; Yes        ; |Game_Console_Top|dino_logic:g4l|y[3]                        ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |Game_Console_Top|dino_logic:g4l|cactus_x[7]                 ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |Game_Console_Top|flappy_bird_logic:g2l|pipe_y[3]            ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |Game_Console_Top|flappy_bird_logic:g2l|pipe_x[9]            ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |Game_Console_Top|pong_logic:g0l|paddle_L_y[7]               ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |Game_Console_Top|pong_logic:g0l|x[0]                        ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |Game_Console_Top|invaders_logic:g5l|ship_x[2]               ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |Game_Console_Top|flappy_bird_logic:g2l|true_y[4]            ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |Game_Console_Top|pong_logic:g0l|y[0]                        ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |Game_Console_Top|pong_logic:g0l|vx[0]                       ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 8 LEs                ; 24 LEs                 ; Yes        ; |Game_Console_Top|pong_logic:g0l|score[3]                    ;
+; 9:1                ; 3 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |Game_Console_Top|pong_logic:g0l|paddle_R_y[6]               ;
+; 12:1               ; 8 bits    ; 64 LEs        ; 8 LEs                ; 56 LEs                 ; Yes        ; |Game_Console_Top|breakout_logic:g3l|score[2]                ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; Yes        ; |Game_Console_Top|frogger_logic:g6l|frog_x[8]                ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |Game_Console_Top|pong_display:g0d|VGA_R[0]                  ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 32 LEs               ; 8 LEs                  ; No         ; |Game_Console_Top|Mux35                                      ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |Game_Console_Top|breakout_display:g3d|B[0]                  ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |Game_Console_Top|Mux9                                       ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |Game_Console_Top|VGA_G                                      ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |Game_Console_Top|VGA_G                                      ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 9 LEs                ; 0 LEs                  ; No         ; |Game_Console_Top|VGA_G                                      ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |Game_Console_Top|snake_logic:g1l|dir.00                     ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |Game_Console_Top|menu_display:m_ui|G[0]                     ;
+; 128:1              ; 11 bits   ; 935 LEs       ; 935 LEs              ; 0 LEs                  ; No         ; |Game_Console_Top|snake_logic:g1l|Mux9                       ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; No         ; |Game_Console_Top|snake_logic:g1l|next_dir.10                ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |Game_Console_Top|menu_display:m_ui|R[9]                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------+
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: VGA_Controller:vga_inst ;
++----------------+-------+---------------------------------------------+
+; Parameter Name ; Value ; Type                                        ;
++----------------+-------+---------------------------------------------+
+; H_DISPLAY      ; 640   ; Signed Integer                              ;
+; H_FRONT        ; 16    ; Signed Integer                              ;
+; H_SYNC         ; 96    ; Signed Integer                              ;
+; H_BACK         ; 48    ; Signed Integer                              ;
+; H_MAX          ; 799   ; Signed Integer                              ;
+; V_DISPLAY      ; 480   ; Signed Integer                              ;
+; V_FRONT        ; 10    ; Signed Integer                              ;
+; V_SYNC         ; 2     ; Signed Integer                              ;
+; V_BACK         ; 33    ; Signed Integer                              ;
+; V_MAX          ; 524   ; Signed Integer                              ;
++----------------+-------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Button_Debouncer:db3 ;
++----------------+---------------------+----------------------------+
+; Parameter Name ; Value               ; Type                       ;
++----------------+---------------------+----------------------------+
+; DEBOUNCE_TIME  ; 1111010000100100000 ; Unsigned Binary            ;
++----------------+---------------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Button_Debouncer:db2 ;
++----------------+---------------------+----------------------------+
+; Parameter Name ; Value               ; Type                       ;
++----------------+---------------------+----------------------------+
+; DEBOUNCE_TIME  ; 1111010000100100000 ; Unsigned Binary            ;
++----------------+---------------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Button_Debouncer:db1 ;
++----------------+---------------------+----------------------------+
+; Parameter Name ; Value               ; Type                       ;
++----------------+---------------------+----------------------------+
+; DEBOUNCE_TIME  ; 1111010000100100000 ; Unsigned Binary            ;
++----------------+---------------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Button_Debouncer:db0 ;
++----------------+---------------------+----------------------------+
+; Parameter Name ; Value               ; Type                       ;
++----------------+---------------------+----------------------------+
+; DEBOUNCE_TIME  ; 1111010000100100000 ; Unsigned Binary            ;
++----------------+---------------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pong_display:g0d ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; BALL_SIZE      ; 10    ; Signed Integer                       ;
+; PADDLE_W       ; 10    ; Signed Integer                       ;
+; PADDLE_H       ; 60    ; Signed Integer                       ;
+; PADDLE_L_X     ; 20    ; Signed Integer                       ;
+; PADDLE_R_X     ; 610   ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Bin2BCD:bcd_inst|lpm_divide:Mod0 ;
++------------------------+----------------+-----------------------------------------+
+; Parameter Name         ; Value          ; Type                                    ;
++------------------------+----------------+-----------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                 ;
+; LPM_WIDTHD             ; 4              ; Untyped                                 ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                 ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                 ;
+; LPM_PIPELINE           ; 0              ; Untyped                                 ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                 ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                 ;
+; CBXI_PARAMETER         ; lpm_divide_45m ; Untyped                                 ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                 ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                 ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                              ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                            ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                            ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                          ;
++------------------------+----------------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Bin2BCD:bcd_inst|lpm_divide:Div0 ;
++------------------------+----------------+-----------------------------------------+
+; Parameter Name         ; Value          ; Type                                    ;
++------------------------+----------------+-----------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                 ;
+; LPM_WIDTHD             ; 4              ; Untyped                                 ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                 ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                 ;
+; LPM_PIPELINE           ; 0              ; Untyped                                 ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                 ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                 ;
+; CBXI_PARAMETER         ; lpm_divide_1dm ; Untyped                                 ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                 ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                 ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                              ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                            ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                            ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                          ;
++------------------------+----------------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: frogger_logic:g6l|lpm_divide:Mod0 ;
++------------------------+----------------+------------------------------------------+
+; Parameter Name         ; Value          ; Type                                     ;
++------------------------+----------------+------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                  ;
+; LPM_WIDTHD             ; 2              ; Untyped                                  ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                  ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                  ;
+; LPM_PIPELINE           ; 0              ; Untyped                                  ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                  ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                  ;
+; CBXI_PARAMETER         ; lpm_divide_25m ; Untyped                                  ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                  ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                  ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                               ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                             ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                             ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                           ;
++------------------------+----------------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: snake_logic:g1l|lpm_mult:Mult0   ;
++------------------------------------------------+------------+---------------------+
+; Parameter Name                                 ; Value      ; Type                ;
++------------------------------------------------+------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 8          ; Untyped             ;
+; LPM_WIDTHB                                     ; 18         ; Untyped             ;
+; LPM_WIDTHP                                     ; 26         ; Untyped             ;
+; LPM_WIDTHR                                     ; 26         ; Untyped             ;
+; LPM_WIDTHS                                     ; 1          ; Untyped             ;
+; LPM_REPRESENTATION                             ; UNSIGNED   ; Untyped             ;
+; LPM_PIPELINE                                   ; 0          ; Untyped             ;
+; LATENCY                                        ; 0          ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; YES        ; Untyped             ;
+; USE_EAB                                        ; OFF        ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 5          ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone II ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL     ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped             ;
+; CBXI_PARAMETER                                 ; NOTHING    ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped             ;
++------------------------------------------------+------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: breakout_logic:g3l|lpm_mult:Mult0 ;
++------------------------------------------------+------------+----------------------+
+; Parameter Name                                 ; Value      ; Type                 ;
++------------------------------------------------+------------+----------------------+
+; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY           ;
+; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY         ;
+; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE         ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE       ;
+; LPM_WIDTHA                                     ; 8          ; Untyped              ;
+; LPM_WIDTHB                                     ; 14         ; Untyped              ;
+; LPM_WIDTHP                                     ; 22         ; Untyped              ;
+; LPM_WIDTHR                                     ; 22         ; Untyped              ;
+; LPM_WIDTHS                                     ; 1          ; Untyped              ;
+; LPM_REPRESENTATION                             ; UNSIGNED   ; Untyped              ;
+; LPM_PIPELINE                                   ; 0          ; Untyped              ;
+; LATENCY                                        ; 0          ; Untyped              ;
+; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped              ;
+; INPUT_B_IS_CONSTANT                            ; YES        ; Untyped              ;
+; USE_EAB                                        ; OFF        ; Untyped              ;
+; MAXIMIZE_SPEED                                 ; 5          ; Untyped              ;
+; DEVICE_FAMILY                                  ; Cyclone II ; Untyped              ;
+; CARRY_CHAIN                                    ; MANUAL     ; Untyped              ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K  ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped              ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped              ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped              ;
+; CBXI_PARAMETER                                 ; NOTHING    ; Untyped              ;
+; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped              ;
+; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped              ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped              ;
++------------------------------------------------+------------+----------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: pong_logic:g0l|lpm_mult:Mult0    ;
++------------------------------------------------+------------+---------------------+
+; Parameter Name                                 ; Value      ; Type                ;
++------------------------------------------------+------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 8          ; Untyped             ;
+; LPM_WIDTHB                                     ; 14         ; Untyped             ;
+; LPM_WIDTHP                                     ; 22         ; Untyped             ;
+; LPM_WIDTHR                                     ; 22         ; Untyped             ;
+; LPM_WIDTHS                                     ; 1          ; Untyped             ;
+; LPM_REPRESENTATION                             ; UNSIGNED   ; Untyped             ;
+; LPM_PIPELINE                                   ; 0          ; Untyped             ;
+; LATENCY                                        ; 0          ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; YES        ; Untyped             ;
+; USE_EAB                                        ; OFF        ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 5          ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone II ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL     ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped             ;
+; CBXI_PARAMETER                                 ; NOTHING    ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped             ;
++------------------------------------------------+------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: dino_logic:g4l|lpm_mult:Mult0    ;
++------------------------------------------------+------------+---------------------+
+; Parameter Name                                 ; Value      ; Type                ;
++------------------------------------------------+------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 8          ; Untyped             ;
+; LPM_WIDTHB                                     ; 13         ; Untyped             ;
+; LPM_WIDTHP                                     ; 21         ; Untyped             ;
+; LPM_WIDTHR                                     ; 21         ; Untyped             ;
+; LPM_WIDTHS                                     ; 1          ; Untyped             ;
+; LPM_REPRESENTATION                             ; UNSIGNED   ; Untyped             ;
+; LPM_PIPELINE                                   ; 0          ; Untyped             ;
+; LATENCY                                        ; 0          ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; YES        ; Untyped             ;
+; USE_EAB                                        ; OFF        ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 6          ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone II ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL     ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped             ;
+; CBXI_PARAMETER                                 ; NOTHING    ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped             ;
++------------------------------------------------+------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: frogger_logic:g6l|lpm_mult:Mult0 ;
++------------------------------------------------+------------+---------------------+
+; Parameter Name                                 ; Value      ; Type                ;
++------------------------------------------------+------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 8          ; Untyped             ;
+; LPM_WIDTHB                                     ; 12         ; Untyped             ;
+; LPM_WIDTHP                                     ; 20         ; Untyped             ;
+; LPM_WIDTHR                                     ; 20         ; Untyped             ;
+; LPM_WIDTHS                                     ; 1          ; Untyped             ;
+; LPM_REPRESENTATION                             ; UNSIGNED   ; Untyped             ;
+; LPM_PIPELINE                                   ; 0          ; Untyped             ;
+; LATENCY                                        ; 0          ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; YES        ; Untyped             ;
+; USE_EAB                                        ; OFF        ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 5          ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone II ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL     ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped             ;
+; CBXI_PARAMETER                                 ; NOTHING    ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped             ;
++------------------------------------------------+------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                            ;
++---------------------------------------+-----------------------------------+
+; Name                                  ; Value                             ;
++---------------------------------------+-----------------------------------+
+; Number of entity instances            ; 5                                 ;
+; Entity Instance                       ; snake_logic:g1l|lpm_mult:Mult0    ;
+;     -- LPM_WIDTHA                     ; 8                                 ;
+;     -- LPM_WIDTHB                     ; 18                                ;
+;     -- LPM_WIDTHP                     ; 26                                ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                          ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                ;
+;     -- INPUT_B_IS_CONSTANT            ; YES                               ;
+;     -- USE_EAB                        ; OFF                               ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                              ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                ;
+; Entity Instance                       ; breakout_logic:g3l|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 8                                 ;
+;     -- LPM_WIDTHB                     ; 14                                ;
+;     -- LPM_WIDTHP                     ; 22                                ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                          ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                ;
+;     -- INPUT_B_IS_CONSTANT            ; YES                               ;
+;     -- USE_EAB                        ; OFF                               ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                              ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                ;
+; Entity Instance                       ; pong_logic:g0l|lpm_mult:Mult0     ;
+;     -- LPM_WIDTHA                     ; 8                                 ;
+;     -- LPM_WIDTHB                     ; 14                                ;
+;     -- LPM_WIDTHP                     ; 22                                ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                          ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                ;
+;     -- INPUT_B_IS_CONSTANT            ; YES                               ;
+;     -- USE_EAB                        ; OFF                               ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                              ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                ;
+; Entity Instance                       ; dino_logic:g4l|lpm_mult:Mult0     ;
+;     -- LPM_WIDTHA                     ; 8                                 ;
+;     -- LPM_WIDTHB                     ; 13                                ;
+;     -- LPM_WIDTHP                     ; 21                                ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                          ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                ;
+;     -- INPUT_B_IS_CONSTANT            ; YES                               ;
+;     -- USE_EAB                        ; OFF                               ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                              ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                ;
+; Entity Instance                       ; frogger_logic:g6l|lpm_mult:Mult0  ;
+;     -- LPM_WIDTHA                     ; 8                                 ;
+;     -- LPM_WIDTHB                     ; 12                                ;
+;     -- LPM_WIDTHP                     ; 20                                ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                          ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                ;
+;     -- INPUT_B_IS_CONSTANT            ; YES                               ;
+;     -- USE_EAB                        ; OFF                               ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                              ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                ;
++---------------------------------------+-----------------------------------+
+
+
++--------------------------------------------------+
+; Port Connectivity Checks: "vga_number:cdown_num" ;
++---------------+-------+----------+---------------+
+; Port          ; Type  ; Severity ; Details       ;
++---------------+-------+----------+---------------+
+; start_x[5..4] ; Input ; Info     ; Stuck at VCC  ;
+; start_x[2..1] ; Input ; Info     ; Stuck at VCC  ;
+; start_x[7..6] ; Input ; Info     ; Stuck at GND  ;
+; start_x[9]    ; Input ; Info     ; Stuck at GND  ;
+; start_x[8]    ; Input ; Info     ; Stuck at VCC  ;
+; start_x[3]    ; Input ; Info     ; Stuck at GND  ;
+; start_x[0]    ; Input ; Info     ; Stuck at GND  ;
+; start_y[7..6] ; Input ; Info     ; Stuck at VCC  ;
+; start_y[4..2] ; Input ; Info     ; Stuck at VCC  ;
+; start_y[9..8] ; Input ; Info     ; Stuck at GND  ;
+; start_y[1..0] ; Input ; Info     ; Stuck at GND  ;
+; start_y[5]    ; Input ; Info     ; Stuck at GND  ;
++---------------+-------+----------+---------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "frogger_display:g6d"                                                                                                                            ;
++----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type  ; Severity ; Details                                                                                                                                      ;
++----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; video_on ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Game_Logic_Master:master_inst"                                                          ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; pause_en ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ps2_keyboard:ps2_inst"                                                                                       ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                                                  ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; p2_left  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; p2_right ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Clock_Divider:cd_inst"                                                                                          ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                                                  ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; rst         ; Input  ; Info     ; Stuck at GND                                                                                             ;
+; frame_pulse ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:19     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Wed May 20 15:59:06 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Project -c Project
+Info (11104): Parallel Compilation has detected 16 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 8 of the 8 physical processors detected instead.
+Info (12021): Found 1 design units, including 1 entities, in source file game_console_top.v
+    Info (12023): Found entity 1: Game_Console_Top
+Info (12021): Found 1 design units, including 1 entities, in source file hardware & interface/vga_controller.v
+    Info (12023): Found entity 1: VGA_Controller
+Info (12021): Found 1 design units, including 1 entities, in source file hardware & interface/clock_divider.v
+    Info (12023): Found entity 1: Clock_Divider
+Info (12021): Found 1 design units, including 1 entities, in source file hardware & interface/ps2_keyboard.v
+    Info (12023): Found entity 1: ps2_keyboard
+Info (12021): Found 1 design units, including 1 entities, in source file hardware & interface/hex_display.v
+    Info (12023): Found entity 1: Hex_Display
+Info (12021): Found 1 design units, including 1 entities, in source file hardware & interface/button_debouncer.v
+    Info (12023): Found entity 1: Button_Debouncer
+Info (12021): Found 1 design units, including 1 entities, in source file hardware & interface/input_handler.v
+    Info (12023): Found entity 1: Input_Handler
+Info (12021): Found 1 design units, including 1 entities, in source file core & fsm/game_logic_master.v
+    Info (12023): Found entity 1: Game_Logic_Master
+Info (12021): Found 1 design units, including 1 entities, in source file core & fsm/menu_display.v
+    Info (12023): Found entity 1: menu_display
+Info (12021): Found 1 design units, including 1 entities, in source file core & fsm/ui_text_renderer.v
+    Info (12023): Found entity 1: UI_Text_Renderer
+Info (12021): Found 1 design units, including 1 entities, in source file core & fsm/vga_number.v
+    Info (12023): Found entity 1: vga_number
+Info (12021): Found 1 design units, including 1 entities, in source file core & fsm/bin2bcd.v
+    Info (12023): Found entity 1: Bin2BCD
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/pong_logic.v
+    Info (12023): Found entity 1: pong_logic
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/pong_display.v
+    Info (12023): Found entity 1: pong_display
+Warning (10229): Verilog HDL Expression warning at snake_logic.v(22): truncated literal to match 22 bits
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/snake_logic.v
+    Info (12023): Found entity 1: snake_logic
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/snake_display.v
+    Info (12023): Found entity 1: snake_display
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/flappy_bird_logic.v
+    Info (12023): Found entity 1: flappy_bird_logic
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/flappy_bird_display.v
+    Info (12023): Found entity 1: flappy_bird_display
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/breakout_logic.v
+    Info (12023): Found entity 1: breakout_logic
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/breakout_display.v
+    Info (12023): Found entity 1: breakout_display
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/dino_logic.v
+    Info (12023): Found entity 1: dino_logic
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/dino_display.v
+    Info (12023): Found entity 1: dino_display
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/invaders_logic.v
+    Info (12023): Found entity 1: invaders_logic
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/invaders_display.v
+    Info (12023): Found entity 1: invaders_display
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/frogger_logic.v
+    Info (12023): Found entity 1: frogger_logic
+Info (12021): Found 1 design units, including 1 entities, in source file game engines/frogger_display.v
+    Info (12023): Found entity 1: frogger_display
+Info (12021): Found 1 design units, including 1 entities, in source file test_pattern.v
+    Info (12023): Found entity 1: Test_Pattern
+Info (12127): Elaborating entity "Game_Console_Top" for the top level hierarchy
+Warning (10230): Verilog HDL assignment warning at Game_Console_Top.v(439): truncated value with size 32 to match size of target (25)
+Warning (10034): Output port "LEDG[0]" at Game_Console_Top.v(16) has no driver
+Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:cd_inst"
+Warning (10230): Verilog HDL assignment warning at Clock_Divider.v(30): truncated value with size 32 to match size of target (19)
+Info (12128): Elaborating entity "VGA_Controller" for hierarchy "VGA_Controller:vga_inst"
+Info (12128): Elaborating entity "ps2_keyboard" for hierarchy "ps2_keyboard:ps2_inst"
+Info (12128): Elaborating entity "Button_Debouncer" for hierarchy "Button_Debouncer:db3"
+Info (12128): Elaborating entity "Game_Logic_Master" for hierarchy "Game_Logic_Master:master_inst"
+Info (12128): Elaborating entity "pong_logic" for hierarchy "pong_logic:g0l"
+Warning (10230): Verilog HDL assignment warning at pong_logic.v(81): truncated value with size 32 to match size of target (11)
+Warning (10230): Verilog HDL assignment warning at pong_logic.v(86): truncated value with size 32 to match size of target (11)
+Info (12128): Elaborating entity "pong_display" for hierarchy "pong_display:g0d"
+Info (12128): Elaborating entity "snake_logic" for hierarchy "snake_logic:g1l"
+Warning (10230): Verilog HDL assignment warning at snake_logic.v(14): truncated value with size 6 to match size of target (5)
+Info (12128): Elaborating entity "snake_display" for hierarchy "snake_display:g1d"
+Info (12128): Elaborating entity "flappy_bird_logic" for hierarchy "flappy_bird_logic:g2l"
+Warning (10230): Verilog HDL assignment warning at flappy_bird_logic.v(41): truncated value with size 32 to match size of target (20)
+Warning (10230): Verilog HDL assignment warning at flappy_bird_logic.v(64): truncated value with size 32 to match size of target (8)
+Info (12128): Elaborating entity "flappy_bird_display" for hierarchy "flappy_bird_display:g2d"
+Info (12128): Elaborating entity "breakout_logic" for hierarchy "breakout_logic:g3l"
+Warning (10230): Verilog HDL assignment warning at breakout_logic.v(14): truncated value with size 32 to match size of target (20)
+Warning (10230): Verilog HDL assignment warning at breakout_logic.v(16): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at breakout_logic.v(18): truncated value with size 32 to match size of target (10)
+Info (12128): Elaborating entity "breakout_display" for hierarchy "breakout_display:g3d"
+Info (12128): Elaborating entity "dino_logic" for hierarchy "dino_logic:g4l"
+Info (12128): Elaborating entity "dino_display" for hierarchy "dino_display:g4d"
+Info (12128): Elaborating entity "invaders_logic" for hierarchy "invaders_logic:g5l"
+Info (12128): Elaborating entity "invaders_display" for hierarchy "invaders_display:g5d"
+Info (12128): Elaborating entity "frogger_logic" for hierarchy "frogger_logic:g6l"
+Warning (10230): Verilog HDL assignment warning at frogger_logic.v(95): truncated value with size 32 to match size of target (20)
+Warning (10230): Verilog HDL assignment warning at frogger_logic.v(97): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at frogger_logic.v(98): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at frogger_logic.v(99): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at frogger_logic.v(100): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at frogger_logic.v(104): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at frogger_logic.v(105): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at frogger_logic.v(106): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at frogger_logic.v(107): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at frogger_logic.v(108): truncated value with size 32 to match size of target (10)
+Info (12128): Elaborating entity "frogger_display" for hierarchy "frogger_display:g6d"
+Info (12128): Elaborating entity "menu_display" for hierarchy "menu_display:m_ui"
+Info (12128): Elaborating entity "vga_number" for hierarchy "vga_number:cdown_num"
+Info (12128): Elaborating entity "UI_Text_Renderer" for hierarchy "UI_Text_Renderer:ui_inst"
+Warning (10230): Verilog HDL assignment warning at UI_Text_Renderer.v(13): truncated value with size 10 to match size of target (5)
+Info (12128): Elaborating entity "Bin2BCD" for hierarchy "Bin2BCD:bcd_inst"
+Warning (10230): Verilog HDL assignment warning at Bin2BCD.v(8): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at Bin2BCD.v(9): truncated value with size 32 to match size of target (4)
+Info (12128): Elaborating entity "Hex_Display" for hierarchy "Hex_Display:hex_tens"
+Info (278001): Inferred 8 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Bin2BCD:bcd_inst|Mod0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Bin2BCD:bcd_inst|Div0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "frogger_logic:g6l|Mod0"
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "snake_logic:g1l|Mult0"
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "breakout_logic:g3l|Mult0"
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "pong_logic:g0l|Mult0"
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "dino_logic:g4l|Mult0"
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "frogger_logic:g6l|Mult0"
+Info (12130): Elaborated megafunction instantiation "Bin2BCD:bcd_inst|lpm_divide:Mod0"
+Info (12133): Instantiated megafunction "Bin2BCD:bcd_inst|lpm_divide:Mod0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_45m.tdf
+    Info (12023): Found entity 1: lpm_divide_45m
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_bkh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_bkh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_ove.tdf
+    Info (12023): Found entity 1: alt_u_div_ove
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_lkc.tdf
+    Info (12023): Found entity 1: add_sub_lkc
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_mkc.tdf
+    Info (12023): Found entity 1: add_sub_mkc
+Info (12130): Elaborated megafunction instantiation "Bin2BCD:bcd_inst|lpm_divide:Div0"
+Info (12133): Instantiated megafunction "Bin2BCD:bcd_inst|lpm_divide:Div0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_1dm.tdf
+    Info (12023): Found entity 1: lpm_divide_1dm
+Info (12130): Elaborated megafunction instantiation "frogger_logic:g6l|lpm_divide:Mod0"
+Info (12133): Instantiated megafunction "frogger_logic:g6l|lpm_divide:Mod0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "2"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_25m.tdf
+    Info (12023): Found entity 1: lpm_divide_25m
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_9kh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_9kh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_kve.tdf
+    Info (12023): Found entity 1: alt_u_div_kve
+Info (12130): Elaborated megafunction instantiation "snake_logic:g1l|lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "snake_logic:g1l|lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "8"
+    Info (12134): Parameter "LPM_WIDTHB" = "18"
+    Info (12134): Parameter "LPM_WIDTHP" = "26"
+    Info (12134): Parameter "LPM_WIDTHR" = "26"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12131): Elaborated megafunction instantiation "snake_logic:g1l|lpm_mult:Mult0|multcore:mult_core", which is child of megafunction instantiation "snake_logic:g1l|lpm_mult:Mult0"
+Info (12131): Elaborated megafunction instantiation "snake_logic:g1l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder", which is child of megafunction instantiation "snake_logic:g1l|lpm_mult:Mult0"
+Info (12131): Elaborated megafunction instantiation "snake_logic:g1l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]", which is child of megafunction instantiation "snake_logic:g1l|lpm_mult:Mult0"
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_4ch.tdf
+    Info (12023): Found entity 1: add_sub_4ch
+Info (12131): Elaborated megafunction instantiation "snake_logic:g1l|lpm_mult:Mult0|altshift:external_latency_ffs", which is child of megafunction instantiation "snake_logic:g1l|lpm_mult:Mult0"
+Info (12130): Elaborated megafunction instantiation "breakout_logic:g3l|lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "breakout_logic:g3l|lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "8"
+    Info (12134): Parameter "LPM_WIDTHB" = "14"
+    Info (12134): Parameter "LPM_WIDTHP" = "22"
+    Info (12134): Parameter "LPM_WIDTHR" = "22"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12131): Elaborated megafunction instantiation "breakout_logic:g3l|lpm_mult:Mult0|multcore:mult_core", which is child of megafunction instantiation "breakout_logic:g3l|lpm_mult:Mult0"
+Info (12131): Elaborated megafunction instantiation "breakout_logic:g3l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder", which is child of megafunction instantiation "breakout_logic:g3l|lpm_mult:Mult0"
+Info (12131): Elaborated megafunction instantiation "breakout_logic:g3l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]", which is child of megafunction instantiation "breakout_logic:g3l|lpm_mult:Mult0"
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_9ch.tdf
+    Info (12023): Found entity 1: add_sub_9ch
+Info (12131): Elaborated megafunction instantiation "breakout_logic:g3l|lpm_mult:Mult0|altshift:external_latency_ffs", which is child of megafunction instantiation "breakout_logic:g3l|lpm_mult:Mult0"
+Info (12130): Elaborated megafunction instantiation "dino_logic:g4l|lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "dino_logic:g4l|lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "8"
+    Info (12134): Parameter "LPM_WIDTHB" = "13"
+    Info (12134): Parameter "LPM_WIDTHP" = "21"
+    Info (12134): Parameter "LPM_WIDTHR" = "21"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "6"
+Info (12131): Elaborated megafunction instantiation "dino_logic:g4l|lpm_mult:Mult0|multcore:mult_core", which is child of megafunction instantiation "dino_logic:g4l|lpm_mult:Mult0"
+Info (12131): Elaborated megafunction instantiation "dino_logic:g4l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder", which is child of megafunction instantiation "dino_logic:g4l|lpm_mult:Mult0"
+Info (12131): Elaborated megafunction instantiation "dino_logic:g4l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]", which is child of megafunction instantiation "dino_logic:g4l|lpm_mult:Mult0"
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_8ch.tdf
+    Info (12023): Found entity 1: add_sub_8ch
+Info (12131): Elaborated megafunction instantiation "dino_logic:g4l|lpm_mult:Mult0|altshift:external_latency_ffs", which is child of megafunction instantiation "dino_logic:g4l|lpm_mult:Mult0"
+Info (12130): Elaborated megafunction instantiation "frogger_logic:g6l|lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "frogger_logic:g6l|lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "8"
+    Info (12134): Parameter "LPM_WIDTHB" = "12"
+    Info (12134): Parameter "LPM_WIDTHP" = "20"
+    Info (12134): Parameter "LPM_WIDTHR" = "20"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12131): Elaborated megafunction instantiation "frogger_logic:g6l|lpm_mult:Mult0|multcore:mult_core", which is child of megafunction instantiation "frogger_logic:g6l|lpm_mult:Mult0"
+Info (12131): Elaborated megafunction instantiation "frogger_logic:g6l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder", which is child of megafunction instantiation "frogger_logic:g6l|lpm_mult:Mult0"
+Info (12131): Elaborated megafunction instantiation "frogger_logic:g6l|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]", which is child of megafunction instantiation "frogger_logic:g6l|lpm_mult:Mult0"
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_7ch.tdf
+    Info (12023): Found entity 1: add_sub_7ch
+Info (12131): Elaborated megafunction instantiation "frogger_logic:g6l|lpm_mult:Mult0|altshift:external_latency_ffs", which is child of megafunction instantiation "frogger_logic:g6l|lpm_mult:Mult0"
+Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "VGA_BLANK" is stuck at VCC
+    Warning (13410): Pin "VGA_SYNC" is stuck at GND
+    Warning (13410): Pin "LEDG[0]" is stuck at GND
+Info (17049): 4 registers lost all their fanouts during netlist optimizations.
+Info (17016): Found the following redundant logic cells in design
+    Info (17048): Logic cell "breakout_logic:g3l|Add0~30"
+    Info (17048): Logic cell "pong_logic:g0l|Add0~30"
+Info (144001): Generated suppressed messages file C:/altera/13.0sp1/Project_CE213/output_files/Project.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 9 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "SW[3]"
+    Warning (15610): No output dependent on input pin "SW[7]"
+    Warning (15610): No output dependent on input pin "SW[8]"
+    Warning (15610): No output dependent on input pin "SW[9]"
+    Warning (15610): No output dependent on input pin "SW[10]"
+    Warning (15610): No output dependent on input pin "SW[11]"
+    Warning (15610): No output dependent on input pin "SW[12]"
+    Warning (15610): No output dependent on input pin "SW[13]"
+    Warning (15610): No output dependent on input pin "SW[14]"
+Info (21057): Implemented 10799 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 25 input pins
+    Info (21059): Implemented 50 output pins
+    Info (21061): Implemented 10724 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 40 warnings
+    Info: Peak virtual memory: 4665 megabytes
+    Info: Processing ended: Wed May 20 15:59:30 2026
+    Info: Elapsed time: 00:00:24
+    Info: Total CPU time (on all processors): 00:00:21
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/altera/13.0sp1/Project_CE213/output_files/Project.map.smsg.
+
+

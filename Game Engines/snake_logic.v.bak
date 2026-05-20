@@ -1,0 +1,127 @@
+module snake_logic(
+    input  wire clk_25MHz, 
+    input  wire rst_n, 
+    input  wire init_en, 
+    input  wire update_en,
+    input  wire btn_up, btn_down, btn_left, btn_right, 
+    input  wire [9:0] pixel_x, // Đổi tên cho rõ nghĩa
+    input  wire [9:0] pixel_y,
+    output wire is_snake, 
+    output wire is_apple, 
+    output reg  dead, 
+    output reg  [3:0] score
+);
+
+    // --- Tham số hệ thống (Dễ dàng thay đổi) ---
+    parameter MAX_X    = 6'd39; // 640 / 16 - 1
+    parameter MAX_Y    = 5'd29; // 480 / 16 - 1
+    parameter MAX_LEN  = 64;    // Chiều dài tối đa
+    parameter SPEED    = 22'd2_500_000; // Tốc độ rắn (~10 khung hình/s)
+
+    // --- Biến nội bộ ---
+    wire [5:0] grid_x = pixel_x[9:4]; // Chia 16 lấy tọa độ ô
+    wire [4:0] grid_y = pixel_y[9:4];
+    
+    reg [5:0] body_x [0:MAX_LEN-1];
+    reg [4:0] body_y [0:MAX_LEN-1];
+    reg [6:0] len;
+    
+    reg [5:0] apple_x, rand_x; 
+    reg [4:0] apple_y, rand_y;
+    
+    reg [21:0] timer_cnt; 
+    wire tick = (timer_cnt == SPEED);
+    
+    reg [1:0] dir, next_dir; 
+    integer i;
+
+    // --- 1. Logic tạo tọa độ Táo ngẫu nhiên (Fast Counter) ---
+    always @(posedge clk_25MHz) begin 
+        rand_x <= (rand_x == MAX_X) ? 6'd0 : rand_x + 1'b1; 
+        rand_y <= (rand_y == MAX_Y) ? 5'd0 : rand_y + 1'b1; 
+    end
+
+    // --- 2. Logic cập nhật trạng thái Game ---
+    always @(posedge clk_25MHz or negedge rst_n) begin
+        if (!rst_n) begin
+            dead <= 1'b0;
+        end 
+        else if (init_en) begin
+            // Khởi tạo trạng thái ban đầu
+            dead  <= 1'b0; 
+            len   <= 7'd3; 
+            score <= 4'd0; 
+            dir   <= 2'd3; // Đi sang phải
+            next_dir <= 2'd3;
+            
+            body_x[0] <= 20; body_y[0] <= 15; // Đầu rắn
+            body_x[1] <= 19; body_y[1] <= 15;
+            body_x[2] <= 18; body_y[2] <= 15;
+            
+            apple_x <= 30; apple_y <= 15; 
+            timer_cnt <= 22'd0;
+        end 
+        else if (update_en && !dead) begin
+            // Đọc phím điều hướng (Chống quay đầu 180 độ)
+            if      (btn_up    && dir != 2'd1) next_dir <= 2'd0; 
+            else if (btn_down  && dir != 2'd0) next_dir <= 2'd1;
+            else if (btn_left  && dir != 2'd3) next_dir <= 2'd2; 
+            else if (btn_right && dir != 2'd2) next_dir <= 2'd3;
+            
+            timer_cnt <= tick ? 22'd0 : timer_cnt + 1'b1;
+            
+            if (tick) begin
+                dir <= next_dir;
+                
+                // Dịch chuyển thân rắn
+                for (i = MAX_LEN-1; i > 0; i = i - 1) begin
+                    if (i < len) begin 
+                        body_x[i] <= body_x[i-1]; 
+                        body_y[i] <= body_y[i-1]; 
+                    end
+                end
+                
+                // Cập nhật Đầu rắn theo hướng
+                case (next_dir)
+                    2'd0: body_y[0] <= body_y[0] - 1'b1; // Lên
+                    2'd1: body_y[0] <= body_y[0] + 1'b1; // Xuống
+                    2'd2: body_x[0] <= body_x[0] - 1'b1; // Trái
+                    2'd3: body_x[0] <= body_x[0] + 1'b1; // Phải
+                endcase
+                
+                // Xử lý ăn Táo
+                if (body_x[0] == apple_x && body_y[0] == apple_y) begin 
+                    if (len < MAX_LEN) len <= len + 1'b1; 
+                    apple_x <= rand_x; 
+                    apple_y <= rand_y;
+                    if (score < 4'd9) score <= score + 1'b1;
+                end
+                
+                // Xử lý chết (Đụng tường)
+                if (body_x[0] > MAX_X || body_y[0] > MAX_Y) 
+                    dead <= 1'b1; 
+                    
+                // Xử lý chết (Cắn trúng đuôi)
+                for (i = 1; i < MAX_LEN; i = i + 1) begin
+                    if (i < len && body_x[0] == body_x[i] && body_y[0] == body_y[i]) 
+                        dead <= 1'b1; 
+                end
+            end
+        end
+    end
+    
+    // --- 3. Logic xuất tín hiệu cho VGA (Quét Pixel) ---
+    reg check_snake;
+    always @(*) begin
+        check_snake = 1'b0;
+        // Kiểm tra xem tọa độ VGA hiện tại có đang vẽ lên thân rắn không
+        for (i = 0; i < MAX_LEN; i = i + 1) begin
+            if (i < len && body_x[i] == grid_x && body_y[i] == grid_y) 
+                check_snake = 1'b1;
+        end
+    end
+    
+    assign is_snake = check_snake; 
+    assign is_apple = (grid_x == apple_x && grid_y == apple_y);
+
+endmodule

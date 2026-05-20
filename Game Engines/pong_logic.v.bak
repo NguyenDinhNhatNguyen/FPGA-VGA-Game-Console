@@ -1,0 +1,83 @@
+module pong_logic(
+    input  wire clk_25MHz,
+    input  wire rst_n,
+    input  wire init_en,
+    input  wire update_en,
+    input  wire [9:0] paddle_L_y, // Tọa độ thanh trượt trái từ module ngoài
+    input  wire [9:0] paddle_R_y, // Tọa độ thanh trượt phải từ module ngoài
+    output wire [9:0] ball_x,
+    output wire [9:0] ball_y,
+    output reg  ball_missed
+);
+
+    // Sử dụng kiểu 'signed' để xử lý số âm khi bóng đập viền/paddle
+    reg signed [10:0] x_pos, y_pos;
+    reg signed [10:0] ball_vx, ball_vy;
+    
+    // Logic tạo frame rate (~60fps)
+    reg [19:0] frame_count;
+    wire tick = (frame_count == 20'd416_666);
+
+    // Gán trực tiếp tọa độ bóng ra output
+    assign ball_x = x_pos[9:0];
+    assign ball_y = y_pos[9:0];
+
+    always @(posedge clk_25MHz or negedge rst_n) begin
+        // 1. Asynchronous Reset: Xóa toàn bộ hệ thống
+        if (!rst_n) begin
+            x_pos <= 11'd315; y_pos <= 11'd235;
+            ball_vx <= 11'd2; ball_vy <= 11'd2;
+            ball_missed <= 1'b0;
+            frame_count <= 20'd0;
+        end
+        // 2. Synchronous Init: Đưa bóng về giữa khi có tín hiệu từ Master FSM
+        else if (init_en) begin
+            x_pos <= 11'd315; y_pos <= 11'd235;
+            ball_vx <= 11'd2; ball_vy <= 11'd2; // Tốc độ khởi tạo
+            ball_missed <= 1'b0;
+            frame_count <= 20'd0;
+        end
+        // 3. Game Update Logic: Chỉ chạy khi FSM đang ở STATE_PLAY
+        else if (update_en) begin
+            frame_count <= tick ? 20'd0 : frame_count + 1'b1;
+
+            if (tick) begin
+                // Cập nhật vị trí bóng
+                x_pos <= x_pos + ball_vx;
+                y_pos <= y_pos + ball_vy;
+
+                // --- Va chạm Tường (Trên/Dưới) ---
+                if (y_pos <= 11'd0 || y_pos >= 11'd470) begin
+                    ball_vy <= -ball_vy; 
+                end
+
+                // --- Điều kiện Thua (Lọt qua biên Trái/Phải) ---
+                if (x_pos <= 11'd0 || x_pos >= 11'd630) begin
+                    ball_missed <= 1'b1;
+                end
+                
+                // --- Va chạm Thanh trượt (Paddles) ---
+                // Giới hạn chặn trong (x_pos >= 20 và x_pos <= 610) 
+                
+                // Va chạm thanh bên TRÁI
+                if (x_pos <= 11'd32 && x_pos >= 11'd20 && 
+                    y_pos + 11'd10 >= $signed({1'b0, paddle_L_y}) && 
+                    y_pos <= $signed({1'b0, paddle_L_y}) + 11'd60) begin
+                    
+                    ball_vx <= -ball_vx; // Bật ngược lại
+                    x_pos <= 11'd33;     // Ép bóng văng ra ngoài ngay lập tức để chống kẹt
+                end
+                
+                // Va chạm thanh bên PHẢI
+                else if (x_pos >= 11'd600 && x_pos <= 11'd612 && 
+                         y_pos + 11'd10 >= $signed({1'b0, paddle_R_y}) && 
+                         y_pos <= $signed({1'b0, paddle_R_y}) + 11'd60) begin
+                         
+                    ball_vx <= -ball_vx; // Bật ngược lại
+                    x_pos <= 11'd599;    // Ép bóng văng ra ngoài ngay lập tức
+                end
+            end
+        end
+    end
+
+endmodule

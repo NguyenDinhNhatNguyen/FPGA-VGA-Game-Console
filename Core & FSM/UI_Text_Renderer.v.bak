@@ -1,0 +1,26 @@
+module UI_Text_Renderer(
+    input  wire [9:0] x, y,
+    input  wire [2:0] state,
+    input  wire [2:0] p1_rounds, p2_rounds,
+    input  wire       sw_2p,
+    output reg  [9:0] text_R, text_G, text_B,
+    output wire       text_on
+);
+    // Tọa độ vẽ trung tâm
+    wire in_area = (x >= 220 && x <= 420 && y >= 200 && y <= 280);
+    
+    // Logic vẽ pixel art đơn giản cho các chữ cái
+    wire is_pause_text = (state == 4); // PAUSE
+    wire is_go_text    = (state == 5); // GAME OVER
+    wire is_win_text   = (state == 6 && p1_rounds >= 5);
+    wire is_lose_text  = (state == 6 && p2_rounds >= 5);
+
+    assign text_on = in_area && (is_pause_text || is_go_text || is_win_text || is_lose_text);
+
+    always @(*) begin
+        if (is_go_text || is_lose_text) {text_R, text_G, text_B} = {10'h3FF, 10'd0, 10'd0};     // ĐỎ
+        else if (is_win_text)           {text_R, text_G, text_B} = {10'h3FF, 10'h3FF, 10'd0};   // VÀNG
+        else if (is_pause_text)         {text_R, text_G, text_B} = {10'h3FF, 10'h3FF, 10'h3FF}; // TRẮNG
+        else                            {text_R, text_G, text_B} = 30'd0;
+    end
+endmodule

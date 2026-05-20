@@ -1,0 +1,14 @@
+
+State Machine - |Game_Console_Top|snake_logic:g1l|next_dir
+Name next_dir.11 next_dir.10 next_dir.01 next_dir.00 
+next_dir.00 0 0 0 0 
+next_dir.01 0 0 1 1 
+next_dir.10 0 1 0 1 
+next_dir.11 1 0 0 1 
+
+State Machine - |Game_Console_Top|snake_logic:g1l|dir
+Name dir.11 dir.10 dir.01 dir.00 
+dir.00 0 0 0 0 
+dir.01 0 0 1 1 
+dir.10 0 1 0 1 
+dir.11 1 0 0 1 

@@ -1,0 +1,27 @@
+module breakout_display(
+    input  wire [9:0] x_pos, y_pos, bx, by, px, 
+    input  wire [7:0] bricks, 
+    input  wire       video_on, 
+    output reg  [9:0] R, G, B
+);
+    wire is_ball = (x_pos >= bx && x_pos < bx + 10 && y_pos >= by && y_pos < by + 10); 
+    wire is_pad  = (x_pos >= px && x_pos < px + 80 && y_pos >= 450 && y_pos < 460); 
+    reg is_brick; 
+    integer i;
+    
+    always @(*) begin 
+        is_brick = 1'b0; 
+        for (i = 0; i < 8; i = i + 1) begin
+            if (bricks[i] && y_pos >= 50 && y_pos <= 70 && x_pos >= 40 + (i*70) && x_pos < 105 + (i*70)) 
+                is_brick = 1'b1;
+        end
+        if (!video_on) {R, G, B} = 30'd0; 
+        else if (is_brick)
+		           {R, G, B} = {10'h3FF, 10'h000, 10'h3FF}; 
+        else if (is_ball)  
+		           {R, G, B} = {10'h3FF, 10'h3FF, 10'h000}; 
+        else if (is_pad)   
+		           {R, G, B} = {10'h000, 10'h3FF, 10'h3FF}; 
+        else {R, G, B} = 30'd0; 
+    end
+endmodule

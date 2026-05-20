@@ -1,0 +1,23 @@
+module frogger_display(
+    input  wire [9:0] x_pos, y_pos, frog_x, frog_y, car1_x, car2_x, car3_x,
+    input  wire video_on,
+    output reg  [9:0] R, G, B
+);
+    // Vẽ Ếch (Màu xanh lá non)
+    wire is_frog = (x_pos >= frog_x && x_pos < frog_x + 20 && y_pos >= frog_y && y_pos < frog_y + 20);
+    // Vẽ 3 Làn Xe (Màu đỏ)
+    wire is_car1 = (x_pos >= car1_x && x_pos < car1_x + 40 && y_pos >= 340 && y_pos < 370);
+    wire is_car2 = (x_pos >= car2_x && x_pos < car2_x + 40 && y_pos >= 240 && y_pos < 270);
+    wire is_car3 = (x_pos >= car3_x && x_pos < car3_x + 40 && y_pos >= 140 && y_pos < 170);
+    // Vẽ vỉa hè an toàn (Xanh lá đậm)
+    wire is_safe_top = (y_pos <= 60);
+    wire is_safe_bot = (y_pos >= 420);
+
+    always @(*) begin
+        if (!video_on) {R, G, B} = 30'd0;
+        else if (is_frog) {R, G, B} = {10'h000, 10'h3FF, 10'h000}; 
+        else if (is_car1 || is_car2 || is_car3) {R, G, B} = {10'h3FF, 10'h000, 10'h000};
+        else if (is_safe_top || is_safe_bot) {R, G, B} = {10'h000, 10'h100, 10'h000}; 
+        else {R, G, B} = {10'h100, 10'h100, 10'h100}; // Đường nhựa xám
+    end
+endmodule

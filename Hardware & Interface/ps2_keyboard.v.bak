@@ -1,0 +1,39 @@
+module ps2_keyboard(
+    input clk_25MHz, input rst_n, input PS2_CLK, input PS2_DAT,
+    output reg btn_up, output reg btn_down
+);
+    reg [10:0] shift_reg; reg [3:0] bit_count; reg [7:0] scan_code;
+    reg data_ready, break_code_flag, ps2_clk_s0, ps2_clk_s1;
+
+    always @(posedge clk_25MHz) begin
+        ps2_clk_s0 <= PS2_CLK; ps2_clk_s1 <= ps2_clk_s0;
+    end
+    wire falling_edge = (ps2_clk_s1 && !ps2_clk_s0);
+
+    always @(posedge clk_25MHz or negedge rst_n) begin
+        if (!rst_n) begin bit_count <= 0; data_ready <= 0; end
+        else if (falling_edge) begin
+            shift_reg <= {PS2_DAT, shift_reg[10:1]};
+            if (bit_count == 10) begin
+                scan_code <= shift_reg[9:2]; data_ready <= 1; bit_count <= 0;
+            end else begin bit_count <= bit_count + 1; data_ready <= 0; end
+        end else data_ready <= 0;
+    end
+
+    always @(posedge clk_25MHz or negedge rst_n) begin
+        if (!rst_n) begin break_code_flag <= 0; btn_up <= 0; btn_down <= 0; end
+        else if (data_ready) begin
+            if (scan_code == 8'hF0) break_code_flag <= 1;
+            else begin
+                if (break_code_flag) begin
+                    if (scan_code == 8'h1D) btn_up <= 0;
+                    if (scan_code == 8'h1B) btn_down <= 0;
+                    break_code_flag <= 0;
+                end else begin
+                    if (scan_code == 8'h1D) btn_up <= 1;
+                    if (scan_code == 8'h1B) btn_down <= 1;
+                end
+            end
+        end
+    end
+endmodule

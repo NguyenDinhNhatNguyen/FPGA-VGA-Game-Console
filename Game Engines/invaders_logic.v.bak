@@ -1,0 +1,67 @@
+module invaders_logic(
+    input  wire       clk, 
+	 input  wire       rst_n, 
+	 input  wire       init_en, 
+	 input  wire       update_en, 
+	 input  wire       SW_hard, 
+	 input  wire       btn_left, 
+	 input  wire       btn_right, 
+	 input  wire       btn_space, 
+    output reg  [9:0] ship_x, 
+	 output reg  [9:0] alien_x, 
+	 output reg  [9:0] laser_x, 
+	 output reg  [9:0] laser_y, 
+    output reg        alien_alive, 
+	 output reg        dead
+);
+    reg alien_dir, laser_active; 
+    reg [19:0] f_cnt; 
+    wire [19:0] TICK_MAX = SW_hard ? 20'd208333 : 20'd416666;
+    wire tick = (f_cnt >= TICK_MAX);
+    
+    reg space_delay; 
+    always @(posedge clk) 
+		space_delay <= btn_space; 
+    wire shoot = (btn_space && !space_delay);
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            dead <= 1'b0; 
+        end else if (init_en) begin 
+            ship_x <= 10'd300; 
+				alien_x <= 10'd50; 
+				alien_dir <= 1'b1; 
+            laser_active <= 1'b0; 
+				alien_alive <= 1'b1; d
+				ead <= 1'b0; 
+        end else if (update_en && !dead) begin
+            if (btn_left && ship_x > 0) 
+					ship_x <= ship_x - 10'd4; 
+            if (btn_right && ship_x < 600) 
+					ship_x <= ship_x + 10'd4; 
+            
+            if (shoot && !laser_active && alien_alive) begin 
+                laser_active <= 1'b1; 
+					 laser_x <= ship_x + 10'd18; 
+					 laser_y <= 10'd420; 
+            end
+            
+            f_cnt <= tick ? 20'd0 : f_cnt + 20'd1; 
+            if (tick) begin
+                if (alien_alive) begin 
+                    alien_x <= alien_dir ? alien_x + 10'd5 : alien_x - 10'd5; 
+                    if (alien_x >= 580) alien_dir <= 1'b0; 
+                    if (alien_x <= 20) alien_dir <= 1'b1; 
+                end
+                
+                if (laser_active) begin 
+                    laser_y <= laser_y - 10'd10; 
+                    if (laser_y <= 10) laser_active <= 1'b0; 
+                    if (alien_alive && laser_y <= 90 && laser_y >= 50 && laser_x >= alien_x && laser_x <= alien_x + 40) begin 
+                        alien_alive <= 1'b0; laser_active <= 1'b0; 
+                    end 
+                end
+            end
+        end
+    end
+endmodule

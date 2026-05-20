@@ -1,0 +1,13 @@
+module Clock_Divider(
+    input CLOCK_50,
+    input rst,
+    output reg clk_25MHz
+);
+    // Chia đôi xung 50MHz thành 25MHz bằng một flip-flop đảo trạng thái
+    always @(posedge CLOCK_50 or posedge rst) begin
+        if (rst) 
+            clk_25MHz <= 1'b0;
+        else 
+            clk_25MHz <= ~clk_25MHz;
+    end
+endmodule

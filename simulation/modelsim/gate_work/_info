@@ -1,0 +1,26 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\altera\13.0sp1\Project_CE213\simulation\modelsim
+vVGA_Controller
+!i10b 1
+!s100 5mXm?E=zEOcIF`;>PhS<T2
+I_RF5;M]_ZD^AV?m;M5gTX3
+VENXIZbBn;zf<CSG>DSUhm3
+Z1 dC:\altera\13.0sp1\Project_CE213\simulation\modelsim
+w1775138433
+8Project.vo
+FProject.vo
+L0 31
+OV;L;10.1d;51
+r1
+!s85 0
+31
+!s108 1775138441.705000
+!s107 Project.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|Project.vo|
+!s101 -O0
+o-vlog01compat -work work -O0
+!s92 -vlog01compat -work work +incdir+. -O0
+n@v@g@a_@controller
